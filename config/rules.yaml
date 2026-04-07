@@ -1,0 +1,91 @@
+detection_rules:
+  network:
+    dos_attack:
+      description: "Detect Denial of Service attacks"
+      features:
+        - packet_rate
+        - source_ip_count
+        - port_diversity
+      thresholds:
+        packets_per_second: 1000
+        unique_sources_threshold: 10
+    
+    port_scanning:
+      description: "Detect port scanning activity"
+      features:
+        - destination_port_count
+        - ports_contacted
+        - connection_attempts
+      thresholds:
+        ports_threshold: 50
+        time_window: 300  # 5 minutes
+    
+    brute_force:
+      description: "Detect brute force attacks"
+      features:
+        - failed_login_attempts
+        - source_ip
+        - time_window
+      thresholds:
+        attempts_threshold: 10
+        time_window: 600
+    
+    data_exfiltration:
+      description: "Detect unauthorized data transfer"
+      features:
+        - outbound_volume
+        - destination_reputation
+        - protocol_anomaly
+      thresholds:
+        volume_mbps: 1000
+        duration_minutes: 5
+
+  endpoint:
+    ransomware:
+      description: "Detect ransomware behavior"
+      features:
+        - file_extension_changes
+        - file_encryption_ratio
+        - delete_operations
+        - extension_entropy
+      thresholds:
+        file_change_rate: 0.8
+        entropy_threshold: 7.5
+        delete_rate: 0.3
+    
+    privilege_escalation:
+      description: "Detect privilege escalation attempts"
+      features:
+        - process_token_changes
+        - registry_modifications
+        - service_installations
+      thresholds:
+        registry_write_count: 50
+        service_creation_count: 5
+    
+    backdoor:
+      description: "Detect backdoor installation"
+      features:
+        - process_parent_chain
+        - network_connections
+        - persistence_mechanisms
+      thresholds:
+        suspicious_registry_keys: 3
+        persistence_methods: 2
+
+alert_thresholds:
+  critical: 90
+  high: 75
+  medium: 50
+  low: 25
+
+response_thresholds:
+  auto_response: 85  # Auto-execute defense if confidence > 85%
+  human_review_required: 75
+  log_only: 25
+
+tuning:
+  false_positive_weight: 1.5
+  false_negative_weight: 3.0
+  ensemble_voting: "majority"  # or "weighted"
+  model_confidence_min: 0.5

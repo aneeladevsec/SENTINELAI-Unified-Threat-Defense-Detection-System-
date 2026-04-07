@@ -1,0 +1,97 @@
+system:
+  name: "SentinelAI Unified Threat Defense"
+  version: "1.0.0"
+  environment: "development"
+  debug: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/sentinelai.log"
+  max_size: 104857600  # 100MB
+  backup_count: 10
+
+database:
+  type: "sqlite"  # Options: sqlite, postgresql
+  sqlite_path: "data/sentinelai.db"
+  postgresql:
+    host: "localhost"
+    port: 5432
+    database: "sentinelai"
+    user: "admin"
+    password: "${DB_PASSWORD}"
+
+detection:
+  network:
+    enabled: true
+    interface: "default"
+    packet_batch_size: 100
+    timeout_seconds: 30
+    model_type: "ensemble"
+    confidence_threshold: 0.85
+    
+  endpoint:
+    enabled: true
+    monitor_interval: 1  # seconds
+    paths_to_monitor:
+      - "/tmp"
+      - "/home"
+      - "C:\\Users"
+      - "C:\\Windows\\System32"
+    event_batch_size: 50
+    
+  threat_intelligence:
+    enabled: true
+    update_interval: 3600  # 1 hour
+    sources:
+      - "https://otx.alienvault.com"
+      - "https://www.abuse.ch"
+
+defense:
+  autonomous: false  # Require human approval for critical actions
+  aggressive_mode: false  # More defensive but more false positives
+  network_defense:
+    enabled: true
+    firewall_type: "iptables"  # Windows, iptables, pf
+    
+  endpoint_defense:
+    enabled: true
+    auto_quarantine: true
+    auto_process_kill: false
+    
+  response_timeout: 60  # seconds
+  
+  notifications:
+    email_enabled: false
+    slack_enabled: false
+    sms_enabled: false
+
+prediction:
+  enabled: true
+  forecast_horizon: 24  # hours ahead
+  model_type: "lstm"  # prophet, lstm
+  update_frequency: 3600  # seconds
+
+api:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  cors_origins:
+    - "http://localhost:8501"
+    - "http://localhost:3000"
+    - "*"
+
+dashboard:
+  enabled: true
+  port: 8501
+  refresh_interval: 5  # seconds
+
+monitoring:
+  health_check_interval: 60  # seconds
+  metrics_retention_days: 30
+  
+performance:
+  max_network_traffic_size: 1000000  # packets
+  ml_batch_size: 32
+  inference_timeout: 50  # milliseconds

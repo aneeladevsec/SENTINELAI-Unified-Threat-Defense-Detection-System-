@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  sentinelai-api:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_TYPE=sqlite
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    networks:
+      - sentinelai-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  sentinelai-dashboard:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - ENVIRONMENT=production
+      - DASHBOARD_HOST=0.0.0.0
+      - DASHBOARD_PORT=8501
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./dashboards:/app/dashboards
+    networks:
+      - sentinelai-network
+    depends_on:
+      - sentinelai-api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  sentinelai-network:
+    driver: bridge
+
+volumes:
+  sentinelai-data:
+  sentinelai-logs:

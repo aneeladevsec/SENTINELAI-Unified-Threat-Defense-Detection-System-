@@ -1,0 +1,163 @@
+2026-04-03 21:43:58,100 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 109 trusted processes
+2026-04-03 21:44:22,767 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 109 trusted processes
+2026-04-03 21:46:33,639 - sentinelai - ERROR - [logger.py:69] - {
+  "timestamp": "2026-04-03T16:46:33.639330",
+  "event_type": "THREAT_DETECTION",
+  "severity": "high",
+  "details": {
+    "id": "alert_1775216793.623613",
+    "type": "dos_ddos",
+    "severity": "high",
+    "confidence": 0.92,
+    "source_ip": "203.0.113.42",
+    "destination_ip": "192.168.1.100",
+    "description": "Detected DDoS attack pattern with high confidence",
+    "metadata": {}
+  }
+}
+2026-04-03 21:46:37,834 - sentinelai - CRITICAL - [logger.py:67] - {
+  "timestamp": "2026-04-03T16:46:37.834649",
+  "event_type": "THREAT_EVALUATION",
+  "severity": "critical",
+  "details": {
+    "threat_level": "critical",
+    "confidence": 0.98,
+    "recommended_actions": [
+      {
+        "type": "isolate_endpoint",
+        "target": "affected_host",
+        "priority": "critical"
+      },
+      {
+        "type": "terminate_processes",
+        "target": "malicious_processes",
+        "priority": "critical"
+      },
+      {
+        "type": "quarantine_files",
+        "target": "suspicious_files",
+        "priority": "critical"
+      },
+      {
+        "type": "restore_backup",
+        "target": "affected_files",
+        "priority": "high"
+      }
+    ],
+    "auto_execute": true,
+    "human_approval_required": true,
+    "timestamp": "2026-04-03T16:46:37.834575",
+    "alert_id": "alert_14fdc5233ad9"
+  }
+}
+2026-04-04 16:34:34,437 - sentinelai - INFO - [logger.py:97] - ============================================================
+2026-04-04 16:34:34,613 - sentinelai - INFO - [logger.py:97] - ============================================================
+2026-04-04 16:34:34,618 - sentinelai - INFO - [logger.py:97] - [+] Environment setup complete
+2026-04-04 16:34:34,619 - sentinelai - INFO - [logger.py:97] - [*] Initializing database...
+2026-04-04 16:34:34,729 - sentinelai - INFO - [logger.py:97] - [+] Database initialized
+2026-04-04 16:34:34,729 - sentinelai - INFO - [logger.py:97] - 
+2026-04-04 16:34:34,730 - sentinelai - INFO - [logger.py:97] - Starting SentinelAI components...
+2026-04-04 16:34:34,731 - sentinelai - INFO - [logger.py:97] - 
+2026-04-04 16:34:34,732 - sentinelai - INFO - [logger.py:97] - [+] Starting API Server...
+2026-04-04 16:34:34,733 - sentinelai - INFO - [logger.py:97] - [*] Starting FastAPI server...
+2026-04-04 16:34:34,734 - sentinelai - INFO - [logger.py:97] - [+] Starting System Monitor...
+2026-04-04 16:34:34,735 - sentinelai - INFO - [logger.py:97] - [*] Starting system monitoring...
+2026-04-04 16:34:34,735 - sentinelai - INFO - [logger.py:97] - [+] Starting Dashboard...
+2026-04-04 16:34:34,736 - sentinelai - INFO - [logger.py:97] - 
+2026-04-04 16:34:34,737 - sentinelai - INFO - [logger.py:97] - ============================================================
+2026-04-04 16:34:34,742 - sentinelai - INFO - [logger.py:97] - 
+2026-04-04 16:34:34,779 - sentinelai - INFO - [logger.py:97] - 
+2026-04-04 16:34:34,780 - sentinelai - INFO - [logger.py:97] - Press Ctrl+C to stop...
+2026-04-04 16:34:34,780 - sentinelai - INFO - [logger.py:97] - ============================================================
+2026-04-04 16:34:34,780 - sentinelai - INFO - [logger.py:97] - [*] Starting Streamlit dashboard...
+2026-04-04 16:34:37,821 - sentinelai - ERROR - [logger.py:93] - Error in start_dashboard: partially initialized module 'pandas' from 'C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\pandas\__init__.py' has no attribute 'Series' (most likely due to a circular import)
+Traceback (most recent call last):
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\run.py", line 77, in start_dashboard
+    import streamlit.cli as stcli
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\streamlit\__init__.py", line 77, in <module>
+    from streamlit.delta_generator import DeltaGenerator as _DeltaGenerator
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\streamlit\delta_generator.py", line 77, in <module>
+    from streamlit.elements.plotly_chart import PlotlyMixin
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\streamlit\elements\plotly_chart.py", line 69, in <module>
+    configure_streamlit_plotly_theme()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\streamlit\elements\lib\streamlit_plotly_theme.py", line 129, in configure_streamlit_plotly_theme
+    textfont=go.icicle.Textfont(color="white")
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\plotly\graph_objs\icicle\_textfont.py", line 568, in __init__
+    self._set_property("color", arg, color)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\plotly\basedatatypes.py", line 4403, in _set_property
+    _set_property_provided_value(self, name, arg, provided)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\plotly\basedatatypes.py", line 398, in _set_property_provided_value
+    obj[name] = val
+    ~~~^^^^^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\plotly\basedatatypes.py", line 4932, in __setitem__
+    self._set_prop(prop, value)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\plotly\basedatatypes.py", line 5271, in _set_prop
+    val = validator.validate_coerce(val)
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\_plotly_utils\basevalidators.py", line 1367, in validate_coerce
+    elif self.array_ok and is_homogeneous_array(v):
+                           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\_plotly_utils\basevalidators.py", line 199, in is_homogeneous_array
+    or (pd and isinstance(v, (pd.Series, pd.Index)))
+                              ^^^^^^^^^
+AttributeError: partially initialized module 'pandas' from 'C:\Users\PMLS\Downloads\sentinelai-unified-defense\venv\Lib\site-packages\pandas\__init__.py' has no attribute 'Series' (most likely due to a circular import)
+2026-04-04 16:46:53,904 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 108 trusted processes
+2026-04-04 16:47:07,253 - sentinelai - ERROR - [logger.py:69] - {
+  "timestamp": "2026-04-04T11:47:07.253383",
+  "event_type": "THREAT_DETECTION",
+  "severity": "high",
+  "details": {
+    "id": "alert_1775285227.223221",
+    "type": "dos_ddos",
+    "severity": "high",
+    "confidence": 0.92,
+    "source_ip": "203.0.113.42",
+    "destination_ip": "192.168.1.100",
+    "description": "Detected DDoS attack pattern with high confidence",
+    "metadata": {}
+  }
+}
+2026-04-04 16:47:11,368 - sentinelai - CRITICAL - [logger.py:67] - {
+  "timestamp": "2026-04-04T11:47:11.368275",
+  "event_type": "THREAT_EVALUATION",
+  "severity": "critical",
+  "details": {
+    "threat_level": "critical",
+    "confidence": 0.98,
+    "recommended_actions": [
+      {
+        "type": "isolate_endpoint",
+        "target": "affected_host",
+        "priority": "critical"
+      },
+      {
+        "type": "terminate_processes",
+        "target": "malicious_processes",
+        "priority": "critical"
+      },
+      {
+        "type": "quarantine_files",
+        "target": "suspicious_files",
+        "priority": "critical"
+      },
+      {
+        "type": "restore_backup",
+        "target": "affected_files",
+        "priority": "high"
+      }
+    ],
+    "auto_execute": true,
+    "human_approval_required": true,
+    "timestamp": "2026-04-04T11:47:11.368231",
+    "alert_id": "alert_a27022940e05"
+  }
+}
+2026-04-04 17:01:00,297 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 108 trusted processes
+2026-04-04 19:57:38,306 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 106 trusted processes
+2026-04-04 19:57:53,667 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 106 trusted processes
+2026-04-04 19:58:08,073 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 107 trusted processes
+2026-04-04 19:58:22,276 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 107 trusted processes
+2026-04-04 20:52:06,195 - sentinelai - INFO - [logger.py:97] - Baseline initialized with 106 trusted processes
